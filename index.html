@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>30-Day System</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .mobile-wrapper {
+            width: 100%;
+            max-width: 480px;
+            
+            /* === ПРАВИЛЬНЫЙ ФОН === */
+            background-color: #F4EFE6; 
+            background-image: url('assets/background.png'); 
+            background-size: 100% auto; 
+            background-position: top center; 
+            background-repeat: no-repeat; 
+            
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- HERO --- */
+        .hero-container {
+            position: relative;
+            padding: 20px 20px 15px 20px; 
+            width: 100%;
+        }
+        .hero-container img.main-hero-img {
+            width: 100%;
+            display: block;
+            border-radius: 16px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* ИЗМЕНЕН БЛОК ИКОНОК НАВЕРХУ */
+        .top-nav-row {
+            position: absolute;
+            top: 40px;
+            right: 40px; 
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+        .top-nav-row img {
+            width: 30px; 
+            height: 30px;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* --- РЕЙТИНГ --- */
+        .rating-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 20px 15px 20px;
+        }
+        .rating-avatars { display: flex; }
+        /* ИСПРАВЛЕНЫ СТИЛИ КАРТИНКИ АВАТАРОК */
+        .rating-avatars img {
+            height: 26px; /* Высота под размер текста */
+            width: auto;  /* Ширина автоматическая, чтобы не плющило прямоугольник */
+            display: block;
+        }
+        .rating-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+        }
+        .stars { color: #C67B54; font-size: 14px; margin-left: 6px; letter-spacing: 1px; }
+
+        /* --- БЛОК ЦЕН И БАННЕР --- */
+        .plans-and-banner {
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px 25px 20px;
+            gap: 16px; 
+            align-items: stretch;
+        }
+        .pricing-col {
+            display: flex;
+            flex-direction: column;
+            width: 100%; 
+        }
+        .pricing-title {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+        .buttons-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+        
+        .plan-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #8295A6; 
+            border: 2px solid #C4673C; 
+            border-radius: 12px;
+            padding: 12px 14px;
+            text-decoration: none;
+            flex: 1;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25); 
+        }
+        .plan-left { display: flex; align-items: center; gap: 10px; }
+        
+        .plan-dot-outer {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #C4673C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+        }
+        .plan-dot-inner {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #C4673C;
+        }
+
+        .plan-name { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; color: #ffffff; }
+        .plan-right { display: flex; align-items: baseline; gap: 6px; }
+        .old-price { font-size: 13px; color: #444; text-decoration: line-through; font-weight: 500; }
+        .new-price { font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: #ffffff; }
+        
+        .banner-col { 
+            display: flex; 
+            width: 100%; 
+        }
+        .banner-col img { width: 100%; border-radius: 12px; object-fit: cover; }
+
+        /* --- ЗАГОЛОВКИ --- */
+        .section-header { padding: 20px 20px 12px 20px; }
+        h2 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; color: #2D3134; margin-bottom: 4px; letter-spacing: -0.5px; }
+        p.subtitle { font-size: 13px; color: #7A7A7A; }
+
+        /* КЛАСС ДЛЯ ЦВЕТНЫХ ЗАГОЛОВКОВ */
+        .accent-title {
+            color: #A75C39 !important;
+        }
+
+        /* --- СЛАЙДЕРЫ --- */
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 0 20px 5px 20px; 
+            scroll-padding-left: 20px;
+            gap: 12px;
+            scrollbar-width: none; 
+        }
+        .slider-container::-webkit-scrollbar { display: none; }
+        
+        .slider-container > img {
+            flex: 0 0 85%;
+            scroll-snap-align: start;
+            border-radius: 16px;
+            display: block;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* --- ТОЧКИ ДЛЯ СЛАЙДЕРОВ --- */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            padding-bottom: 15px; 
+        }
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: rgba(45, 49, 52, 0.2); 
+            transition: all 0.3s ease;
+        }
+        .dot.active {
+            background-color: rgba(45, 49, 52, 0.8); 
+            transform: scale(1.2); 
+        }
+
+        /* --- КАРТИНКА ЦЕЛИКОМ --- */
+        .single-fit-image {
+            width: 100%;
+            padding: 0 20px 15px 20px;
+        }
+        .single-fit-image img {
+            width: 100%; 
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- СТАТИЧНАЯ СЕТКА (3 в ряд) --- */
+        .grid-3-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 0 20px 15px 20px;
+        }
+        .grid-3-items > img { width: 100%; display: block; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); object-fit: cover; }
+
+        /* --- НИЖНИЕ КНОПКИ --- */
+        .bottom-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px 40px 20px;
+            gap: 12px;
+        }
+        .action-card {
+            flex: 1; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; text-align: center; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .card-light { background: #ffffff; }
+        .card-dark { background: #0B1926; }
+        .action-card img.card-img { width: 100%; border-radius: 10px; margin-bottom: 12px; aspect-ratio: 4/3; object-fit: cover; }
+        .action-card h3 { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; margin-bottom: 6px; line-height: 1.2; }
+        .card-light h3 { color: #111; }
+        .card-dark h3 { color: #fff; }
+        .action-card p { font-size: 10px; margin-bottom: 16px; line-height: 1.4; flex-grow: 1; }
+        .card-light p { color: #666; }
+        .card-dark p { color: #aaa; }
+        .btn { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; padding: 10px 0; width: 100%; border-radius: 20px; display: inline-block; transition: 0.2s ease; }
+        
+        .card-light .btn { background-color: #172838; color: #ffffff; border: 1px solid transparent; }
+        .card-dark .btn { background-color: #ffffff; color: #172838; border: 1px solid transparent; }
+
+        /* --- ПОДВАЛ --- */
+        .footer-block {
+            padding: 0 20px 40px 20px;
+        }
+        .footer-explore {
+            font-family: 'Montserrat', sans-serif;
+            color: #A75C39; /* ИЗМЕНЕН ЦВЕТ НА A75C39 */
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #111111;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        .footer-text a.email-link {
+            color: #7A7A7A;
+            text-decoration: none;
+            font-weight: 400;
+        }
+        .footer-links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .footer-links-list a {
+            color: #7A7A7A;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .footer-links-list a:active { color: #BC633D; }
+    </style>
+</head>
+<body>
+
+<div class="mobile-wrapper">
+    
+    <div class="hero-container">
+        <div class="top-nav-row">
+            <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
+            <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
+        </div>
+        <img src="assets/hero-bg.png" class="main-hero-img" alt="START BUILDING YOUR SYSTEM TODAY">
+    </div> 
+
+    <div class="rating-block">
+        <div class="rating-avatars">
+            <img src="assets/avatar1.png" alt="user">
+        </div>
+        <div class="rating-text">
+            20+ customers gave us a 5 <span class="stars">★</span>
+        </div>
+    </div>
+
+    <div class="plans-and-banner">
+        <div class="pricing-col">
+            <p class="pricing-title">Select your plan:</p>
+            <div class="buttons-wrapper">
+                <a href="#footer" class="plan-btn">
+                    <div class="plan-left">
+                        <div class="plan-dot-outer"><div class="plan-dot-inner"></div></div>
+                        <span class="plan-name">7-day reset</span>
+                    </div>
+                    <div class="plan-right">
+                        <span class="old-price">39$</span>
+                        <span class="new-price">19$</span>
+                    </div>
+                </a>
+                <a href="#footer" class="plan-btn">
+                    <div class="plan-left">
+                        <div class="plan-dot-outer"><div class="plan-dot-inner"></div></div>
+                        <span class="plan-name">30-day reset</span>
+                    </div>
+                    <div class="plan-right">
+                        <span class="old-price">59$</span>
+                        <span class="new-price">29$</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="banner-col">
+            <img src="assets/intention-banner.png" alt="Continue with intention">
+        </div>
+    </div>
+
+    <div class="section-header" id="whats-inside">
+        <h2>What's inside the course</h2>
+    </div>
+    <div class="slider-container">
+        <img src="assets/course-slide-1.png" alt="30-day system">
+        <img src="assets/course-slide-2.png" alt="Details">
+        <img src="assets/course-slide-3.png" alt="Details">
+        <img src="assets/course-slide-4.png" alt="Details">
+        <img src="assets/course-slide-5.png" alt="Details">
+    </div>
+
+    <div class="section-header">
+        <h2 class="accent-title">The proof is in the result</h2>
+        <p class="subtitle">Hear from our community</p>
+    </div>
+    <div class="single-fit-image">
+        <img src="assets/proof-combined.png" alt="Reviews">
+    </div>
+
+    <div class="section-header" id="look-inside">
+        <h2>Take a look inside</h2>
+    </div>
+    <div class="slider-container">
+        <img src="assets/1.png" alt="7-Day Energy Reset 1">
+        <img src="assets/2.png" alt="7-Day Energy Reset 2">
+        <img src="assets/3.png" alt="7-Day Energy Reset 3">
+        <img src="assets/4.png" alt="7-Day Energy Reset 4">
+    </div>
+
+    <div class="section-header">
+        <h2 class="accent-title">The transformation speaks for itself</h2>
+        <p class="subtitle">Hear from our community</p>
+    </div>
+    <div class="grid-3-items">
+        <img src="assets/transform-1.png" alt="Transformation 1">
+        <img src="assets/transform-2.png" alt="Transformation 2">
+        <img src="assets/transform-3.png" alt="Transformation 3">
+    </div>
+
+    <div class="section-header">
+        <h2 class="accent-title">One-time purchase, permanent use</h2>
+        <p class="subtitle">Invest in yourself today and keep the guidance forever.</p>
+    </div>
+    
+    <div class="bottom-actions">
+        <a href="#buy-30" id="buy-30" class="action-card card-light">
+            <img src="assets/preview-30.png" class="card-img" alt="30 days">
+            <h3>30 days of step-by-step control</h3>
+            <p>Form your unbreakable habit, truly harness your energy</p>
+            <div class="btn">Start 30-Day journey</div>
+        </a>
+        <a href="#buy-7" id="buy-7" class="action-card card-dark">
+            <img src="assets/preview-7.png" class="card-img" alt="7 days">
+            <h3>7 days to evaluate the routine in real time</h3>
+            <p>Will you have enough discipline and will-power to do it?</p>
+            <div class="btn">Start 7-Day journey</div>
+        </a>
+    </div>
+
+    <div class="footer-block" id="footer">
+        <img src="assets/footer.png" style="width: 50%; display: block; margin-bottom: 24px; border-radius: 12px;" alt="Payments">
+
+        <h3 class="footer-explore">Explore</h3>
+        
+        <p class="footer-text">
+            E-Mail: <a href="mailto:alphacore.method@gmail.com" class="email-link">alphacore.method@gmail.com</a>
+        </p>
+        
+        <div class="footer-links-list">
+            <a href="#public-offer">Public Offer</a>
+            <a href="#privacy-policy">Privacy Policy</a>
+            <a href="#founder">Founder</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sliders = document.querySelectorAll('.slider-container');
+
+        sliders.forEach(slider => {
+            const slides = slider.querySelectorAll('img');
+            if (slides.length <= 1) return; 
+
+            const dotsContainer = document.createElement('div');
+            dotsContainer.classList.add('slider-dots');
+            slider.parentNode.insertBefore(dotsContainer, slider.nextSibling);
+
+            slides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active'); 
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll('.dot');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const index = Array.from(slides).indexOf(entry.target);
+                        dots.forEach((dot, i) => {
+                            dot.classList.toggle('active', i === index);
+                        });
+                    }
+                });
+            }, {
+                root: slider,
+                threshold: 0.5 
+            });
+
+            slides.forEach(slide => observer.observe(slide));
+        });
+    });
+</script>
+
+</body>
+</html>
