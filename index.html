@@ -1,36 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <!-- Meta Pixel Code -->
-<script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    
-    // Инициализация с рандомными цифрами
-    fbq('init', '888999111222333'); 
-    
-    // 1. Просмотр страницы
-    fbq('track', 'PageView');
-    
-    // 2. Лид
-    fbq('track', 'Lead');
-    
-    // 3. Покупка 
-    fbq('track', 'Purchase', {
-      value: 250.00,
-      currency: 'MYR' 
-    });
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=888999111222333&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>30-Day System</title>
@@ -322,6 +292,25 @@
         }
         .footer-links-list a:active { color: #BC633D; }
     </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1265005425177981');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1265005425177981&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
 </head>
 <body>
 
@@ -490,6 +479,58 @@
             slides.forEach(slide => observer.observe(slide));
         });
     });
+
+    // --- ДОБАВЛЕННЫЙ КОД ДЛЯ ПИКСЕЛЯ И СОБЫТИЙ ---
+
+    // 1. ОТСЛЕЖИВАНИЕ СКРОЛЛА (Scroll Depth)
+    let scrolled50 = false;
+    let scrolled90 = false;
+
+    window.addEventListener('scroll', function() {
+        let scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        
+        if (scrollPercent >= 50 && !scrolled50) {
+            if (typeof fbq === 'function') fbq('trackCustom', 'ScrollDepth', { depth: '50%' });
+            scrolled50 = true;
+        }
+        if (scrollPercent >= 90 && !scrolled90) {
+            if (typeof fbq === 'function') fbq('trackCustom', 'ScrollDepth', { depth: '90%' });
+            scrolled90 = true;
+        }
+    });
+
+    // 2. ОТСЛЕЖИВАНИЕ ПЕРЕХОДА К ОПЛАТЕ (InitiateCheckout)
+    function trackCheckoutAndRedirect(event, planName, price, currency, redirectUrl) {
+        event.preventDefault(); 
+        
+        if (typeof fbq === 'function') {
+            fbq('track', 'InitiateCheckout', {
+                content_name: planName,
+                value: price,
+                currency: currency
+            });
+        }
+
+        setTimeout(function() {
+            window.location.href = redirectUrl;
+        }, 300);
+    }
+
+    // Вешаем событие на кнопку 30-дневного плана (29$)
+    const buy30Btn = document.getElementById('buy-30');
+    if (buy30Btn) {
+        buy30Btn.addEventListener('click', function(e) {
+            trackCheckoutAndRedirect(e, '30-Day System', 29.00, 'USD', this.href);
+        });
+    }
+
+    // Вешаем событие на кнопку 7-дневного плана (19$)
+    const buy7Btn = document.getElementById('buy-7');
+    if (buy7Btn) {
+        buy7Btn.addEventListener('click', function(e) {
+            trackCheckoutAndRedirect(e, '7-Day Reset', 19.00, 'USD', this.href);
+        });
+    }
 </script>
 
 </body>
