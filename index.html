@@ -26,14 +26,11 @@
         .mobile-wrapper {
             width: 100%;
             max-width: 480px;
-            
-            /* === ПРАВИЛЬНЫЙ ФОН === */
             background-color: #F4EFE6; 
             background-image: url('assets/background.png'); 
             background-size: 100% auto; 
             background-position: top center; 
             background-repeat: no-repeat; 
-            
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
@@ -52,7 +49,6 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         
-        /* ИЗМЕНЕН БЛОК ИКОНОК НАВЕРХУ */
         .top-nav-row {
             position: absolute;
             top: 40px;
@@ -76,10 +72,9 @@
             padding: 0 20px 15px 20px;
         }
         .rating-avatars { display: flex; }
-        /* ИСПРАВЛЕНЫ СТИЛИ КАРТИНКИ АВАТАРОК */
         .rating-avatars img {
-            height: 26px; /* Высота под размер текста */
-            width: auto;  /* Ширина автоматическая, чтобы не плющило прямоугольник */
+            height: 26px; 
+            width: auto;  
             display: block;
         }
         .rating-text {
@@ -162,12 +157,6 @@
         /* --- ЗАГОЛОВКИ --- */
         .section-header { padding: 20px 20px 12px 20px; }
         h2 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; color: #2D3134; margin-bottom: 4px; letter-spacing: -0.5px; }
-        p.subtitle { font-size: 13px; color: #7A7A7A; }
-
-        /* КЛАСС ДЛЯ ЦВЕТНЫХ ЗАГОЛОВКОВ */
-        .accent-title {
-            color: #A75C39 !important;
-        }
 
         /* --- СЛАЙДЕРЫ --- */
         .slider-container {
@@ -178,6 +167,7 @@
             scroll-padding-left: 20px;
             gap: 12px;
             scrollbar-width: none; 
+            margin-bottom: 10px;
         }
         .slider-container::-webkit-scrollbar { display: none; }
         
@@ -195,7 +185,7 @@
             display: flex;
             justify-content: center;
             gap: 6px;
-            padding-bottom: 15px; 
+            padding-bottom: 25px; 
         }
         .dot {
             width: 7px;
@@ -219,23 +209,13 @@
             height: auto;
             display: block;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-
-        /* --- СТАТИЧНАЯ СЕТКА (3 в ряд) --- */
-        .grid-3-items {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            padding: 0 20px 15px 20px;
-        }
-        .grid-3-items > img { width: 100%; display: block; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); object-fit: cover; }
 
         /* --- НИЖНИЕ КНОПКИ --- */
         .bottom-actions {
             display: flex;
             justify-content: space-between;
-            padding: 10px 20px 40px 20px;
+            padding: 20px 20px 40px 20px;
             gap: 12px;
         }
         .action-card {
@@ -261,7 +241,7 @@
         }
         .footer-explore {
             font-family: 'Montserrat', sans-serif;
-            color: #A75C39; /* ИЗМЕНЕН ЦВЕТ НА A75C39 */
+            color: #A75C39; 
             font-size: 20px;
             font-weight: 600;
             margin-bottom: 12px;
@@ -292,25 +272,6 @@
         }
         .footer-links-list a:active { color: #BC633D; }
     </style>
-
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1265005425177981');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1265005425177981&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
-
 </head>
 <body>
 
@@ -333,6 +294,7 @@
         </div>
     </div>
 
+    <!-- КНОПКИ ВЫБОРА ПЛАНА -->
     <div class="plans-and-banner">
         <div class="pricing-col">
             <p class="pricing-title">Select your plan:</p>
@@ -364,50 +326,47 @@
         </div>
     </div>
 
-    <div class="section-header" id="whats-inside">
-        <h2>What's inside the course</h2>
-    </div>
-    <div class="slider-container">
-        <img src="assets/course-slide-1.png" alt="30-day system">
-        <img src="assets/course-slide-2.png" alt="Details">
-        <img src="assets/course-slide-3.png" alt="Details">
-        <img src="assets/course-slide-4.png" alt="Details">
-        <img src="assets/course-slide-5.png" alt="Details">
+    <!-- 1. ИДЕТ КАРТИНКА "What's inside the course" -->
+    <div class="single-fit-image" style="margin-top: 10px;">
+        <img src="assets/Group 1353.png" alt="What's inside the course">
     </div>
 
-    <div class="section-header">
-        <h2 class="accent-title">The proof is in the result</h2>
-        <p class="subtitle">Hear from our community</p>
-    </div>
+    <!-- 2. ИДЕТ КАРТИНКА "30 DAYS OF TOTAL TRANSFORMATION" -->
     <div class="single-fit-image">
-        <img src="assets/proof-combined.png" alt="Reviews">
+        <img src="assets/Group 1358.png" alt="30 Days of total transformation">
     </div>
 
+    <!-- 3. ЗАГОЛОВОК И ПЕРВЫЙ СЛАЙДЕР "Take a look inside" -->
     <div class="section-header" id="look-inside">
         <h2>Take a look inside</h2>
     </div>
     <div class="slider-container">
-        <img src="assets/1.png" alt="7-Day Energy Reset 1">
-        <img src="assets/2.png" alt="7-Day Energy Reset 2">
-        <img src="assets/3.png" alt="7-Day Energy Reset 3">
-        <img src="assets/4.png" alt="7-Day Energy Reset 4">
+        <img src="assets/1.png" alt="Take a look inside 1">
+        <img src="assets/2.png" alt="Take a look inside 2">
+        <img src="assets/3.png" alt="Take a look inside 3">
+        <img src="assets/4.png" alt="Take a look inside 4">
     </div>
 
-    <div class="section-header">
-        <h2 class="accent-title">The transformation speaks for itself</h2>
-        <p class="subtitle">Hear from our community</p>
-    </div>
-    <div class="grid-3-items">
-        <img src="assets/transform-1.png" alt="Transformation 1">
-        <img src="assets/transform-2.png" alt="Transformation 2">
-        <img src="assets/transform-3.png" alt="Transformation 3">
+    <!-- 4. ИДЕТ КАРТИНКА "TESTING THE SYSTEM" -->
+    <div class="single-fit-image">
+        <img src="assets/Group 1355.png" alt="Testing the system">
     </div>
 
-    <div class="section-header">
-        <h2 class="accent-title">One-time purchase, permanent use</h2>
-        <p class="subtitle">Invest in yourself today and keep the guidance forever.</p>
+    <!-- 5. ОПЯТЬ СЛАЙДЕР -->
+    <div class="slider-container">
+        <img src="assets/course-slide-1.png" alt="Slide 1">
+        <img src="assets/course-slide-2.png" alt="Slide 2">
+        <img src="assets/course-slide-3.png" alt="Slide 3">
+        <img src="assets/course-slide-4.png" alt="Slide 4">
+        <img src="assets/course-slide-5.png" alt="Slide 5">
     </div>
-    
+
+    <!-- 6. КАРТИНКА ОТЗЫВОВ "The transformation speaks for itself" -->
+    <div class="single-fit-image">
+        <img src="assets/Group 1360.png" alt="The transformation speaks for itself">
+    </div>
+
+    <!-- БЛОК ПОКУПКИ И ПОДВАЛ -->
     <div class="bottom-actions">
         <a href="https://whop.com/checkout/plan_y5m7agPr0uuXD" id="buy-30" class="action-card card-light">
             <img src="assets/preview-30.png" class="card-img" alt="30 days">
@@ -425,13 +384,10 @@
 
     <div class="footer-block" id="footer">
         <img src="assets/footer.png" style="width: 50%; display: block; margin-bottom: 24px; border-radius: 12px;" alt="Payments">
-
         <h3 class="footer-explore">Explore</h3>
-        
         <p class="footer-text">
             E-Mail: <a href="mailto:alphacore.method@gmail.com" class="email-link">alphacore.method@gmail.com</a>
         </p>
-        
         <div class="footer-links-list">
             <a href="offer.html">Public Offer</a>
             <a href="privacy.html">Privacy Policy</a>
@@ -479,58 +435,6 @@
             slides.forEach(slide => observer.observe(slide));
         });
     });
-
-    // --- ДОБАВЛЕННЫЙ КОД ДЛЯ ПИКСЕЛЯ И СОБЫТИЙ ---
-
-    // 1. ОТСЛЕЖИВАНИЕ СКРОЛЛА (Scroll Depth)
-    let scrolled50 = false;
-    let scrolled90 = false;
-
-    window.addEventListener('scroll', function() {
-        let scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        
-        if (scrollPercent >= 50 && !scrolled50) {
-            if (typeof fbq === 'function') fbq('trackCustom', 'ScrollDepth', { depth: '50%' });
-            scrolled50 = true;
-        }
-        if (scrollPercent >= 90 && !scrolled90) {
-            if (typeof fbq === 'function') fbq('trackCustom', 'ScrollDepth', { depth: '90%' });
-            scrolled90 = true;
-        }
-    });
-
-    // 2. ОТСЛЕЖИВАНИЕ ПЕРЕХОДА К ОПЛАТЕ (InitiateCheckout)
-    function trackCheckoutAndRedirect(event, planName, price, currency, redirectUrl) {
-        event.preventDefault(); 
-        
-        if (typeof fbq === 'function') {
-            fbq('track', 'InitiateCheckout', {
-                content_name: planName,
-                value: price,
-                currency: currency
-            });
-        }
-
-        setTimeout(function() {
-            window.location.href = redirectUrl;
-        }, 300);
-    }
-
-    // Вешаем событие на кнопку 30-дневного плана (29$)
-    const buy30Btn = document.getElementById('buy-30');
-    if (buy30Btn) {
-        buy30Btn.addEventListener('click', function(e) {
-            trackCheckoutAndRedirect(e, '30-Day System', 29.00, 'USD', this.href);
-        });
-    }
-
-    // Вешаем событие на кнопку 7-дневного плана (19$)
-    const buy7Btn = document.getElementById('buy-7');
-    if (buy7Btn) {
-        buy7Btn.addEventListener('click', function(e) {
-            trackCheckoutAndRedirect(e, '7-Day Reset', 19.00, 'USD', this.href);
-        });
-    }
 </script>
 
 </body>
