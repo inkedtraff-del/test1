@@ -272,6 +272,26 @@
         }
         .footer-links-list a:active { color: #BC633D; }
     </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1265005425177981');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1265005425177981&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Meta Pixel Code -->
+
 </head>
 <body>
 
@@ -434,6 +454,30 @@
 
             slides.forEach(slide => observer.observe(slide));
         });
+
+        // --- FACEBOOK PIXEL TRACKING EVENTS ---
+        const buy30Btn = document.getElementById('buy-30');
+        const buy7Btn = document.getElementById('buy-7');
+
+        if (buy30Btn) {
+            buy30Btn.addEventListener('click', function() {
+                fbq('track', 'InitiateCheckout', {
+                    content_name: '30-day reset',
+                    value: 29.00,
+                    currency: 'USD'
+                });
+            });
+        }
+
+        if (buy7Btn) {
+            buy7Btn.addEventListener('click', function() {
+                fbq('track', 'InitiateCheckout', {
+                    content_name: '7-day reset',
+                    value: 19.00,
+                    currency: 'USD'
+                });
+            });
+        }
     });
 </script>
 
